@@ -1,0 +1,13 @@
+# Игнорировать папку venv
+.venv/
+
+# Игнорировать папку .idea (для настроек проекта в IntelliJ, PyCharm и других IDE JetBrains)
+.idea/
+
+# Игнорируем всю папку target
+target/
+
+# Но добавляем папку allure-results и её содержимое
+!target/allure-results/
+!target/allure-results/*
+
