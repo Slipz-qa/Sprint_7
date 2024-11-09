@@ -4,5 +4,9 @@
 # Игнорировать папку .idea (для настроек проекта в IntelliJ, PyCharm и других IDE JetBrains)
 .idea/
 
-# Игнорировать папку target (для сборок и других временных файлов)
+# Игнорируем всю папку target
 target/
+
+# Но исключаем папку allure_result, чтобы она была добавлена
+!target/allure_result/
+
