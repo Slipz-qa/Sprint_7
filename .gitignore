@@ -7,6 +7,7 @@
 # Игнорируем всю папку target
 target/
 
-# Но исключаем папку allure_result, чтобы она была добавлена
+# Но добавляем папку allure-results и её содержимое
 !target/allure-results/
+!target/allure-results/*
 
