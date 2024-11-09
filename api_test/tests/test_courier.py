@@ -1,16 +1,5 @@
-
 import pytest
 from api_test.methods import create_courier_payload, send_create_courier_request, check_response_status, check_response_body, create_courier_with_login, generate_random_string
-
-
-@pytest.fixture
-def create_courier():
-    payload = {
-        "login": generate_random_string(10),
-        "password": "password123",
-        "firstName": "Artem"
-    }
-    return create_courier_with_login(payload)
 
 
 class TestCourier:

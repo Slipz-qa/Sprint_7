@@ -3,15 +3,18 @@ import requests
 import random
 import string
 from api_test.data import BASE_URL, COURIERS_URL, COURIER_DATA, ORDERS_URL
+from api_test.methods import create_courier_with_login, generate_random_string
 from api_test.methods.login_courier_methods import LoginCourier
 
 
+# Создание случайной строки для логина и других данных
 def generate_random_string(length):
     characters = string.ascii_letters + string.digits
     return ''.join(random.choice(characters) for _ in range(length))
 
 
 login_courier = LoginCourier()
+
 
 @pytest.fixture()
 def register_courier():
@@ -37,6 +40,7 @@ def register_courier():
     else:
         pytest.fail(f"Не удалось создать курьера. Код ответа: {response.status_code}, Сообщение: {response.json()}")
 
+
 @pytest.fixture()
 def cleanup_courier(request):
     courier_data = request.getfixturevalue('register_courier')
@@ -53,9 +57,9 @@ def cleanup_courier(request):
         else:
             print(f"Курьер не найден для удаления, статус: {check_response.status_code}")
 
+
 @pytest.fixture(scope="module")
 def register_courier_with_data():
-
     response = login_courier.send_create_request(COURIER_DATA)
     assert response.status_code == 201, f"Не удалось создать курьера: {response.json()}"
     return COURIER_DATA
@@ -95,6 +99,24 @@ def order_data():
         "deliveryDate": "2020-06-06",
         "comment": "Saske, come back to Konoha",
     }
+
+
+# Фикстура для создания курьера
+@pytest.fixture()
+def create_courier():
+    payload = {
+        "login": generate_random_string(10),
+        "password": "password123",
+        "firstName": "Artem"
+    }
+    courier = create_courier_with_login(payload)
+
+    # Проверяем, что курьер был создан успешно
+    assert courier is not None, "Не удалось создать курьера."
+    assert "id" in courier, "Курьер не имеет ID."
+
+    return courier
+
 
 
 
