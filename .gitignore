@@ -1,5 +1,5 @@
 # Игнорировать папку venv
-venv/
+.venv/
 
 # Игнорировать папку .idea (для настроек проекта в IntelliJ, PyCharm и других IDE JetBrains)
 .idea/
