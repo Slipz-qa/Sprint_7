@@ -8,5 +8,5 @@
 target/
 
 # Но исключаем папку allure_result, чтобы она была добавлена
-!target/allure_results/
+!target/allure-results/
 
